@@ -1,0 +1,13 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          apigee:
+            authorization-grant-type: client_credentials
+            client-id: ${apigee.client_id}
+            client-secret: ${apigee.client_secret}
+        provider:
+          apigee:
+            token-uri: https://mparaz-eval-test.apigee.net/oauth/client_credential/accesstoken
+
