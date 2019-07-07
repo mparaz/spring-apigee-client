@@ -26,9 +26,9 @@ public class AsyncSpringApigeeClient implements SpringApigeeClient {
         webClient.get()
                 .uri(clientUrl)
                 .retrieve()
-                .bodyToMono(String.class)
-                .map(string
-                        -> "Retrieved using Client Credentials Grant Type: " + string)
+                .bodyToMono(HelloWorld.class)
+                .map(helloWorld
+                        -> "Retrieved using Client Credentials Grant Type: " + helloWorld)
                 .subscribe(logger::info);
     }
 }
