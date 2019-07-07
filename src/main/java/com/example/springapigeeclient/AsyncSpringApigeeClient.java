@@ -10,18 +10,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 public class AsyncSpringApigeeClient implements SpringApigeeClient {
-    @Autowired
-    private WebClient webClient;
-
     private static final String clientUrl = "https://mparaz-eval-test.apigee.net/helloworld-client-credentials";
-
 
     private static final Logger logger = LoggerFactory.getLogger(AsyncSpringApigeeClient.class);
 
+    @Autowired
+    private WebClient webClient;
+
     @Override
     public void authenticateAndGet() {
-
-        // TODO How to convert the retrieved JSON into an object?
 
         webClient.get()
                 .uri(clientUrl)

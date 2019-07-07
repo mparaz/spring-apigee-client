@@ -1,3 +1,4 @@
+# Async using Spring Security 5.1:
 spring:
   security:
     oauth2:
@@ -11,3 +12,11 @@ spring:
           apigee:
             token-uri: https://mparaz-eval-test.apigee.net/oauth/client_credential/accesstoken
 
+# Sync using Spring Security OAuth:
+sync:
+  apigee:
+    grantType: client_credentials
+    clientId: ${apigee.client_id}
+    clientSecret: ${apigee.client_secret}
+    accessTokenUri: https://mparaz-eval-test.apigee.net/oauth/client_credential/accesstoken
+    scope: custom_mod
