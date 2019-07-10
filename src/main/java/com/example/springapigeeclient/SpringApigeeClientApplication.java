@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.oauth2.client.registration.InMemoryReactiveClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.security.oauth2.client.web.server.UnAuthenticatedServerOAuth2AuthorizedClientRepository;
@@ -28,12 +29,14 @@ public class SpringApigeeClientApplication {
 						clientRegistrations,
 						new UnAuthenticatedServerOAuth2AuthorizedClientRepository());
 		oauth.setDefaultClientRegistrationId("apigee");
+
 		return WebClient.builder()
 				.filter(oauth)
 				.build();
 	}
 
-	// Try configuration here
+
+	// Disable authorisation on the URL
 	@Bean
 	public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
 		http.authorizeExchange().anyExchange().permitAll();
