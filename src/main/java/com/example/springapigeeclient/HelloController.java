@@ -19,6 +19,8 @@ public class HelloController {
     @Autowired
     private WebClient webClient;
 
+    // Not working:
+
     @GetMapping("/hello")
     public Mono<HelloWorld> hello() {
         // Just background...
@@ -27,6 +29,20 @@ public class HelloController {
                 .retrieve()
                 .bodyToMono(HelloWorld.class);
 
+    }
+
+    // Working, except it will be HTTP 401:
+
+    @GetMapping("/hello2")
+    public String hello2() {
+        // Just background...
+        webClient.get()
+                .uri(clientUrl)
+                .retrieve()
+                .bodyToMono(HelloWorld.class)
+                .subscribe(System.out::println);
+
+        return "return first";
     }
 
 }
